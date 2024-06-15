@@ -1,0 +1,15 @@
+git status  現在のブランチのステータス
+
+git branch  ローカルリポジトリにあるブランチ一覧
+
+git branch -r   リモートリポジトリにあるブランチ一覧
+
+git branch -a   ローカルリポジトリとリモートリポジトリにあるブランチ一覧
+
+git fetch   
+
+git branch -d main  //ローカルリポジトリのmainブランチを削除
+
+git push --delete origin testtest   //リモートリポジトリのorigin(https://github.com/trygfmi/test-create-repo-from-terminal.git)にあるtesttestブランチを削除
+
+git pull origin ブランチ名 //リモートリポジトリの状態をローカルリポジトリに反映する
