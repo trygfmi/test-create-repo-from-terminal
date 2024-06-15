@@ -1,0 +1,10 @@
+gh auth login
+
+gh repo create test-create-repo-from-terminal --private
+
+gh repo edit trygfmi/test-create-repo-from-terminal --default-branch main
+
+git branch -d main
+
+gh auth logout
+
