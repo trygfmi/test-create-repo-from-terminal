@@ -2,9 +2,9 @@ name: Java CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ test ]
   pull_request:
-    branches: [ main ]
+    branches: [ test ]
 
 jobs:
   build:
@@ -20,7 +20,7 @@ jobs:
         java-version: '11'
 
     - name: Compile Java file
-      run: javac Main.java
+      run: javac Test.java
 
     - name: Run Java program
-      run: java Main
+      run: java Test
