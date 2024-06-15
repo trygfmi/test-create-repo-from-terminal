@@ -13,3 +13,4 @@ git branch -d main  //ローカルリポジトリのmainブランチを削除
 git push --delete origin testtest   //リモートリポジトリのorigin(https://github.com/trygfmi/test-create-repo-from-terminal.git)にあるtesttestブランチを削除
 
 git pull origin ブランチ名 //リモートリポジトリの状態をローカルリポジトリに反映する
+
