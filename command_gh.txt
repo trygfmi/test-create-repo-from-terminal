@@ -6,3 +6,4 @@ gh repo edit trygfmi/test-create-repo-from-terminal --default-branch main
 
 gh auth logout
 
+
