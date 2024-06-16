@@ -37,7 +37,8 @@ jobs:
 
           #java $class_name
           #grep 'public static void main'　見つけた場合、「0」ステータスコードが返され、見つからなかった場合、「1」ステータスコードが返される
-          if javap -public $class_name | grep 'aaaaaaaaaaaaaaaaaa' > /dev/null; then
+          if javap -public $class_name | grep 'public static void main' > /dev/null; then
+            echo $?
             echo "Found main method in $class_name, running it..."
             java $class_name
             #break
