@@ -24,4 +24,18 @@ jobs:
       run: javac *.java
 
     - name: Run Java program
-      run: java *
+      run: |
+        # Find all compiled class files
+        class_files=$(find out -name "*.class")
+
+        # Extract class names and convert paths to package names
+        for file in $class_files; do
+          class_name=$(echo $file | sed 's|out/||; s|/|.|g; s|.class$||')
+          echo "Class name: $class_name"
+
+          if javap -public -cp out $class_name | grep 'public static void main' > /dev/null; then
+            echo "Found main method in $class_name, running it..."
+            java -cp out $class_name
+            break
+          fi
+        done
