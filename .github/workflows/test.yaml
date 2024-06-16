@@ -31,11 +31,13 @@ jobs:
         # Extract class names and convert paths to package names
         for file in $class_files; do
           echo "file name: $file"
+          #.class,/,.を空文字列にする 
           class_name=$(echo $file | sed 's|.class||; s|/||; s|.||')
           echo "Class name: $class_name"
 
           #java $class_name
-          if javap -public $class_name | grep 'public static void main' > /dev/null; then
+          #grep 'public static void main'　見つけた場合、「0」ステータスコードが返され、見つからなかった場合、「1」ステータスコードが返される
+          if javap -public $class_name | grep 'aaaaaaaaaaaaaaaaaa' > /dev/null; then
             echo "Found main method in $class_name, running it..."
             java $class_name
             #break
