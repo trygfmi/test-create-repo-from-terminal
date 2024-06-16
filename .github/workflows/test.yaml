@@ -24,32 +24,60 @@ jobs:
         distribution: 'temurin' # 使用するJDKのディストリビューション
         java-version: '21'    # 使用するJavaのバージョン
 
-    - name: Compile Java file
-      run: javac *.java
-
-    - name: Run Java program
+    - name: Get list of modified Java files
+      id: modified_files
       run: |
+        # Get the list of modified Java files
+        files=$(git diff --name-only HEAD^ HEAD | grep '\.java$')
+        echo "::set-output name=files::$files"
+
+    - name: Compile and run modified Java files
+      run: |
+        # Loop through each modified Java file
+        for file in ${{ steps.modified_files.outputs.files }}; do
+          # Compile the Java file
+          javac "$file"
+
+          # Extract the class name from the file path
+          class_name=$(echo "$file" | sed 's|.java||; s|/||g; s|.||')
+
+          # Check if the class contains the main method
+          if javap -public $class_name | grep 'public static void main' > /dev/null; then
+            echo "Found main method in $class_name, running it..."
+            java $class_name
+          fi
+        done
+
+
+
+
+
+    #- name: Compile Java file
+      #run: javac *.java
+
+    #- name: Run Java program
+      #run: |
         # Find all compiled class files
-        class_files=$(find -name "*.class")
+        #class_files=$(find -name "*.class")
 
         # Extract class names and convert paths to package names
-        for file in $class_files; do
-          echo "file name: $file"
+        #for file in $class_files; do
+          #echo "file name: $file"
           #.class,/,.を空文字列にする 
-          class_name=$(echo $file | sed 's|.class||; s|/||; s|.||')
-          echo "Class name: $class_name"
+          #class_name=$(echo $file | sed 's|.class||; s|/||; s|.||')
+          #echo "Class name: $class_name"
 
           #java $class_name
           #grep 'public static void main'　見つけた場合、「0」ステータスコードが返され、見つからなかった場合、「1」ステータスコードが返される
-          if javap -public $class_name | grep 'public static void main' > /dev/null; then
-            echo $?
-            echo "Found main method in $class_name, running it..."
-            java $class_name
+          #if javap -public $class_name | grep 'public static void main' > /dev/null; then
+            #echo $?
+            #echo "Found main method in $class_name, running it..."
+            #java $class_name
             #break
-          else
-            echo $?
-            echo "Not Found main method in $class_name."
-          fi
+          #else
+            #echo $?
+            #echo "Not Found main method in $class_name."
+          #fi
 
-          echo
-        done
+          #echo
+        #done
