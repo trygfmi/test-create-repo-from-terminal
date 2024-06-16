@@ -31,7 +31,7 @@ jobs:
         # Extract class names and convert paths to package names
         for file in $class_files; do
           echo "file name: $file"
-          class_name=$(echo $file | sed 's|out/||; s|/|.|g; s|.class$||')
+          class_name=$(echo $file | sed 's|.class||; s|/||g; s|.||')
           echo "Class name: $class_name"
 
           if javap -public -cp out $class_name | grep 'public static void main' > /dev/null; then
