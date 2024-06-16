@@ -40,4 +40,6 @@ jobs:
             java $class_name
             #break
           fi
+
+          echo "\n"
         done
