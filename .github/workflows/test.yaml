@@ -27,14 +27,13 @@ jobs:
     - name: Get list of modified Java files
       id: modified_files
       run: |
-        # Get the list of modified Java files
-        files=$(git diff --name-only HEAD^ HEAD | grep '\.java$')
-        echo "::set-output name=files::$files"
+        git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '\.java$' > files.txt
+        echo "Modified Java files:"
+        cat files.txt
 
     - name: Compile and run modified Java files
       run: |
-        # Loop through each modified Java file
-        for file in ${{ steps.modified_files.outputs.files }}; do
+        while IFS= read -r file; do
           # Compile the Java file
           javac "$file"
 
@@ -46,7 +45,7 @@ jobs:
             echo "Found main method in $class_name, running it..."
             java $class_name
           fi
-        done
+        done < files.txt
 
 
 
