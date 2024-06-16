@@ -41,5 +41,5 @@ jobs:
             #break
           fi
 
-          echo "\n"
+          echo
         done
