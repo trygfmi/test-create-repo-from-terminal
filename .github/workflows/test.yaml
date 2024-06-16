@@ -5,10 +5,10 @@ on:
     paths:
       - '**/*.java'
     branches: [ test ]
-  pull_request:
-    paths:
-      - '**/*.java'
-    branches: [ test ]
+  #pull_request:
+    #paths:
+      #- '**/*.java'
+    #branches: [ test ]
 
 jobs:
   build:
