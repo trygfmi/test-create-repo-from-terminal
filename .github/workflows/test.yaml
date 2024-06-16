@@ -38,6 +38,6 @@ jobs:
           if javap -public $class_name | grep 'public static void main' > /dev/null; then
             echo "Found main method in $class_name, running it..."
             java $class_name
-            break
+            #break
           fi
         done
