@@ -30,6 +30,7 @@ jobs:
 
         # Extract class names and convert paths to package names
         for file in $class_files; do
+          echo "file name: $file"
           class_name=$(echo $file | sed 's|out/||; s|/|.|g; s|.class$||')
           echo "Class name: $class_name"
 
