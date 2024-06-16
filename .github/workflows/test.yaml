@@ -46,6 +46,7 @@ jobs:
             echo $?
           fi
           
+          echo $?
 
           echo
         done
