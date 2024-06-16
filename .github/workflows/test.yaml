@@ -21,7 +21,7 @@ jobs:
         java-version: '21'    # 使用するJavaのバージョン
 
     - name: Compile Java file
-      run: javac Test.java
+      run: javac *.java
 
     - name: Run Java program
       run: java Test
