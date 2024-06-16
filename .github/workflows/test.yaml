@@ -26,7 +26,7 @@ jobs:
     - name: Run Java program
       run: |
         # Find all compiled class files
-        class_files=$(find out -name "*.class")
+        class_files=$(find -name "*.class")
 
         # Extract class names and convert paths to package names
         for file in $class_files; do
