@@ -34,7 +34,7 @@ jobs:
           class_name=$(echo $file | sed 's|.class||; s|/||; s|.||')
           echo "Class name: $class_name"
 
-          java $class_name
+          #java $class_name
           if javap -public $class_name | grep 'public static void main' > /dev/null; then
             echo "Found main method in $class_name, running it..."
             java $class_name
