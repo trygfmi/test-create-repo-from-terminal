@@ -41,7 +41,7 @@ jobs:
           echo "javac file: $file"
 
           # Extract the class name from the file path
-          class_name=$(echo "$file" | sed 's|.java||; s|/||g; s|.||')
+          class_name=$(echo "$file" | sed 's|.java||;')
           echo "class_name: $class_name"
 
           # Check if the class contains the main method
