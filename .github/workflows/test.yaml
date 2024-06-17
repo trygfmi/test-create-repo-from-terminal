@@ -38,11 +38,11 @@ jobs:
         while IFS= read -r file; do
           # Compile the Java file
           javac "$file"
-          echo "javac file: $file"
+          #echo "javac file: $file"
 
           # Extract the class name from the file path
           class_name=$(echo "$file" | sed 's|.java||;')
-          echo "class_name: $class_name"
+          #echo "class_name: $class_name"
 
           # Check if the class contains the main method
           if javap -public $class_name | grep 'public static void main' > /dev/null; then
