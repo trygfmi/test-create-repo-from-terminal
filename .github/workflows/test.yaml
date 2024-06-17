@@ -49,6 +49,8 @@ jobs:
             echo "Found main method in $class_name, running it..."
             java $class_name
           fi
+
+          echo
         done < files.txt
 
 
