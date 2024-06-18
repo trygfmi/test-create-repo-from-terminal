@@ -1,8 +1,6 @@
 name: Java CI
 
 on:
-  workflow_dispatch
-
   paths:
     - '**/*.java'
   branches: [ test ]
@@ -10,6 +8,7 @@ on:
     #paths:
       #- '**/*.java'
     #branches: [ test ]
+  workflow_dispatch
 
 jobs:
   build:
