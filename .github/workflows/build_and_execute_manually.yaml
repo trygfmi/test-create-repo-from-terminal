@@ -1,0 +1,49 @@
+name: build_and_execute_javafile_manually
+
+on: workflow_dispatch
+
+jobs:
+  build_and_execute_a_java_file:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+          fetch-depth: 3
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin' # 使用するJDKのディストリビューション
+        java-version: '21'    # 使用するJavaのバージョン
+
+    - name: Get list of modified Java files
+      id: modified_files
+      run: |
+        git diff --name-only $(git rev-parse HEAD~1) $(git rev-parse HEAD~2) | grep '\.java$' > files.txt
+        echo "Modified Java files!:"
+        cat files.txt
+
+    - name: Compile and run modified Java files
+      run: |
+        while IFS= read -r file; do
+          # Compile the Java file
+          javac "$file"
+          #echo "javac file: $file"
+
+          # Extract the class name from the file path
+          class_name=$(echo "$file" | sed 's|.java||;')
+          #echo "class_name: $class_name"
+
+          # Check if the class contains the main method
+          if javap -public $class_name | grep 'public static void main' > /dev/null; then
+            echo "Found main method in $class_name, running it..."
+            java $class_name
+          else
+            echo "Not found main method in $class_name"
+          fi
+
+          echo
+        done < files.txt
+
