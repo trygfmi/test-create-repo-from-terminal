@@ -30,7 +30,7 @@ jobs:
       id: modified_files
       run: |
         git diff --name-only ${{ github.sha }} ${{ github.event.before }} | grep '\.java$' > files.txt
-        echo "Modified Java files:"
+        echo "Modified Java files!:"
         cat files.txt
 
     - name: Compile and run modified Java files
