@@ -21,7 +21,7 @@ jobs:
     - name: Get list of modified Java files
       id: modified_files
       run: |
-        git diff --name-only $(git rev-parse HEAD~1) $(git rev-parse HEAD~2) | grep '\.java$' > files.txt
+        git diff --name-only $(git rev-parse HEAD) $(git rev-parse HEAD~1) | grep '\.java$' > files.txt
         echo "Modified Java files!:"
         cat files.txt
 
