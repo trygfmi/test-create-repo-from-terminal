@@ -5,6 +5,7 @@ on:
     paths:
       - '**/*.java'
     branches: [ test ]
+  workflow_dispatch:
   #pull_request:
     #paths:
       #- '**/*.java'
