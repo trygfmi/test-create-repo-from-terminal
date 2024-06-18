@@ -12,7 +12,7 @@ on:
     #branches: [ test ]
 
 jobs:
-  build:
+  build and execute:
     runs-on: ubuntu-latest
 
     steps:
