@@ -12,7 +12,7 @@ on:
     #branches: [ test ]
 
 jobs:
-  build_and_execute:
+  build_and_execute_a_java_file:
     runs-on: ubuntu-latest
 
     steps:
