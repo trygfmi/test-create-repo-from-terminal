@@ -31,7 +31,7 @@ jobs:
       id: modified_files
       run: |
         #git diff --name-only ${{ github.sha }} ${{ github.event.before }} | grep '\.java$' > files.txt
-        git diff --name-only $(git rev-parse head) $(git rev-parse head^) | grep '\.java$' > files.txt
+        git diff --name-only $(git rev-parse HEAD) $(git rev-parse HEAD^) | grep '\.java$' > files.txt
         echo "Modified Java files!:"
         cat files.txt
 
