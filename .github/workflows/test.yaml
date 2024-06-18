@@ -1,10 +1,11 @@
 name: Java CI
 
 on:
-  push:
-    paths:
-      - '**/*.java'
-    branches: [ test ]
+  workflow_dispatch
+
+  paths:
+    - '**/*.java'
+  branches: [ test ]
   #pull_request:
     #paths:
       #- '**/*.java'
