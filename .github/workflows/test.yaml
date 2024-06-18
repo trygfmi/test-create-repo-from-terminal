@@ -30,7 +30,8 @@ jobs:
     - name: Get list of modified Java files
       id: modified_files
       run: |
-        git diff --name-only ${{ github.sha }} ${{ github.event.before }} | grep '\.java$' > files.txt
+        #git diff --name-only ${{ github.sha }} ${{ github.event.before }} | grep '\.java$' > files.txt
+        git diff --name-only $head $head^ | grep '\.java$' > files.txt
         echo "Modified Java files!:"
         cat files.txt
 
